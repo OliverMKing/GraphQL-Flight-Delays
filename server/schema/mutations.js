@@ -1,5 +1,5 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLFloat } = graphql;
 
 const AirlineType = require("./types/airline_type");
 const AirportType = require("./types/airport_type");
@@ -20,14 +20,27 @@ const mutation = new GraphQLObjectType({
         return Airline.addAirline({ code });
       }
     },
-
     addAirport: {
       type: AirportType,
       args: {
         code: { type: GraphQLString }
       },
-      resolve(parentValue, { name, code }) {
+      resolve(parentValue, { code }) {
         return Airport.addAirport({ code });
+      }
+    },
+    addFlight: {
+      type: FlightType,
+      args: {
+        number: { type: GraphQLString },
+        airline_code: { type: GraphQLString },
+        origin_code: { type: GraphQLString },
+        dest_code: { type: GraphQLString },
+        arrival_delay: { type: GraphQLFloat },
+        destination_delay: { type: GraphQLFloat }
+      },
+      resolve(parentValue, args) {
+        return Flight.addFlight(args);
       }
     }
   }

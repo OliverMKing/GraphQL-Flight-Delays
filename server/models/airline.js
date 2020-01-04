@@ -9,11 +9,14 @@ const AirlineSchema = new Schema({
 
 AirlineSchema.statics.addAirline = function({ code }) {
   return this.find({ code }).then(airline => {
-    if (airline.length > 0) return airline[0].save();
+    if (airline.length > 0) {
+      return airline[0].save();
+    } else {
+      const Airline = mongoose.model("airline", AirlineSchema);
 
-    const Airline = mongoose.model("airline", AirlineSchema);
-    let name = airlines.getAirlineName(code);
-    return new Airline({ name, code }).save();
+      let name = airlines.getAirlineName(code);
+      return new Airline({ name, code }).save();
+    }
   });
 };
 
