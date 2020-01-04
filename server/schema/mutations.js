@@ -14,7 +14,6 @@ const mutation = new GraphQLObjectType({
     addAirline: {
       type: AirlineType,
       args: {
-        name: { type: GraphQLString },
         code: { type: GraphQLString }
       },
       resolve(parentValue, { code }) {
@@ -25,11 +24,10 @@ const mutation = new GraphQLObjectType({
     addAirport: {
       type: AirportType,
       args: {
-        name: { type: GraphQLString },
         code: { type: GraphQLString }
       },
       resolve(parentValue, { name, code }) {
-        return new Airport({ name, code }).save();
+        return Airport.addAirport(code);
       }
     }
   }
