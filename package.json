@@ -18,10 +18,10 @@
   "homepage": "https://github.com/OliverMKing/GraphQL-Flight-Delays#readme",
   "dependencies": {
     "airlines-iata-codes": "^1.0.1",
+    "airport-codes": "^1.0.2",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
-    "flight-manager": "^1.0.0",
     "graphql": "^14.5.8",
     "mongoose": "^5.8.4"
   }

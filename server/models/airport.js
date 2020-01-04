@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const fm = require("flight-manager");
+var airports = require("airport-codes");
 
 const AirportSchema = new Schema({
   name: { type: String },
@@ -13,12 +13,8 @@ AirportSchema.statics.addAirport = function({ code }) {
 
     const Airport = mongoose.model("airport", AirportSchema);
 
-    // TODO: This does not immediately set name so if the mutation
-    //       is called, null will initially be displayed for name
-    return fm.getAirlineByIata(code, function(res) {
-      const name = res.name;
-      return new Airport({ name, code }).save();
-    });
+    const name = airports.findWhere({ iata: code }).get("name");
+    return new Airport({ name, code }).save();
   });
 };
 
