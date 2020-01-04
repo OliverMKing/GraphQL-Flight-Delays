@@ -1,6 +1,11 @@
 const graphql = require("graphql");
+const mongoose = require("mongoose");
 const { GraphQLObjectType, GraphQLString } = graphql;
 const AirportType = require("./airport_type");
+
+const Airline = require("../../models/airline");
+const Airport = require("../../models/airport");
+const Flight = require("../../models/flight");
 
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
