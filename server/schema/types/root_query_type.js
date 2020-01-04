@@ -1,8 +1,9 @@
 const graphql = require("graphql");
-const mongoose = require("mongoose");
 const { GraphQLObjectType, GraphQLString } = graphql;
-const AirportType = require("./airport_type");
 
+const AirlineType = require("./airline_type");
+const AirportType = require("./airport_type");
+const FlightType = require("./flight_type");
 const Airline = require("../../models/airline");
 const Airport = require("../../models/airport");
 const Flight = require("../../models/flight");
