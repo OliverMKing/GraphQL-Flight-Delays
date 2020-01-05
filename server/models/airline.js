@@ -7,6 +7,7 @@ const AirlineSchema = new Schema({
   code: { type: String }
 });
 
+// Adds an airline to mongo if it has a unique code (or returns the existing airline if the code exists)
 AirlineSchema.statics.addAirline = function({ code }) {
   return this.find({ code }).then(airline => {
     if (airline.length > 0) {

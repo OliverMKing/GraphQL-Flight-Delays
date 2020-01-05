@@ -21,6 +21,7 @@ const FlightSchema = new Schema({
   destination_delay: { type: Number }
 });
 
+// Adds flight to mongo and creates corresponding airlines and airports if necessary
 FlightSchema.statics.addFlight = function({
   number,
   airline_code,

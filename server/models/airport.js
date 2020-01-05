@@ -7,6 +7,7 @@ const AirportSchema = new Schema({
   code: { type: String }
 });
 
+// Adds an airport to mongo if it has a unique code (or returns the existing airport if the code exists)
 AirportSchema.statics.addAirport = function({ code }) {
   return this.find({ code }).then(airport => {
     if (airport.length > 0) return airport[0].save();
