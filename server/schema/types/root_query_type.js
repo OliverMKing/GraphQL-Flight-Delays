@@ -17,7 +17,7 @@ const RootQueryType = new GraphQLObjectType({
         name: { type: GraphQLString }
       },
       resolve(parentValue, { name }, req) {
-        return Airport.findOne({ name: /[name]/i });
+        return Airport.findOne({ name });
       }
     },
     airports: {
@@ -32,7 +32,7 @@ const RootQueryType = new GraphQLObjectType({
         name: { type: GraphQLString }
       },
       resolve(parentValue, { name }, req) {
-        return Airline.findOne({ name: /[name]/i });
+        return Airline.findOne({ name });
       }
     },
     airlines: {

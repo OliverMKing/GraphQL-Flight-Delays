@@ -13,6 +13,12 @@ const AirportType = new GraphQLObjectType({
       resolve(parentValue) {
         return Flight.findOutgoing(parentValue.id);
       }
+    },
+    incoming_flights: {
+      type: new GraphQLList(require("./flight_type")),
+      resolve(parentValue) {
+        return Flight.findIncoming(parentValue.id);
+      }
     }
   })
 });
