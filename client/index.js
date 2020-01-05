@@ -19,7 +19,13 @@ const client = new ApolloClient({
 });
 
 const Root = () => {
-  return <div>Hello World!</div>;
+  return (
+    <ApolloProvider client={client}>
+      <Router history={hashHistory}>
+        <Route path="/" component={App}></Route>
+      </Router>
+    </ApolloProvider>
+  );
 };
 
 ReactDOM.render(<Root />, document.querySelector("#root"));
