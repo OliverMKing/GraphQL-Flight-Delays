@@ -26,16 +26,19 @@ const loadData = function() {
     console.log("Loading data...");
     fs.createReadStream(LOAD_FILE)
       .pipe(csv())
-      .on("data", data =>
-        Flight.addFlight({
-          number: data.FlightNum,
-          airline_code: data.UniqueCarrier,
-          origin_code: data.Origin,
-          dest_code: data.Dest,
-          arrival_delay: data.DepDelay,
-          destination_delay: data.ArrDelay
-        })
-      )
+      .on("data", data => {
+        // Limits the amount of information added to database since this is just a proof of concept
+        if (Math.floor(Math.random() * 10000) == 1) {
+          Flight.addFlight({
+            number: data.FlightNum,
+            airline_code: data.UniqueCarrier,
+            origin_code: data.Origin,
+            dest_code: data.Dest,
+            arrival_delay: data.DepDelay,
+            destination_delay: data.ArrDelay
+          });
+        }
+      })
       .on("end", () => {
         console.log("Done loading data.");
       });
