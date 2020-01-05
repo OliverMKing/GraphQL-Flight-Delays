@@ -13,7 +13,7 @@ const app = express();
 const MONGO_URL = "mongodb://localhost:27017/test";
 
 // TODO: Set whether you want to load data or not
-const LOAD_DATA = true;
+const LOAD_DATA = false;
 
 // TODO: Set to the location of your load file (https://www.kaggle.com/giovamata/airlinedelaycauses#DelayedFlights.csv)
 const LOAD_FILE = "./DelayedFlights.csv";
@@ -62,5 +62,10 @@ app.use(
 );
 
 app.use(bodyParser.json());
+
+const webpackMiddleware = require("webpack-dev-middleware");
+const webpack = require("webpack");
+const webpackConfig = require("../webpack.config.js");
+app.use(webpackMiddleware(webpack(webpackConfig)));
 
 module.exports = app;
