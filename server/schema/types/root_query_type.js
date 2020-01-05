@@ -1,5 +1,5 @@
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLList } = graphql;
 
 const AirlineType = require("./airline_type");
 const AirportType = require("./airport_type");
@@ -16,8 +16,29 @@ const RootQueryType = new GraphQLObjectType({
       args: {
         name: { type: GraphQLString }
       },
-      resolve(parentValue, args, req) {
-        return args.name;
+      resolve(parentValue, { name }, req) {
+        return Airport.findOne({ name: /[name]/i });
+      }
+    },
+    airports: {
+      type: new GraphQLList(AirportType),
+      resolve() {
+        return Airport.find();
+      }
+    },
+    airline: {
+      type: AirlineType,
+      args: {
+        name: { type: GraphQLString }
+      },
+      resolve(parentValue, { name }, req) {
+        return Airline.findOne({ name: /[name]/i });
+      }
+    },
+    airlines: {
+      type: new GraphQLList(AirlineType),
+      resolve() {
+        return Airline.find();
       }
     }
   }

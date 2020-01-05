@@ -49,4 +49,12 @@ FlightSchema.statics.addFlight = function({
   );
 };
 
+// Finds outgoing_flights by Airport id
+FlightSchema.statics.findOutgoing = function(id) {
+  const airport = Airport.findById(id);
+  return this.find({ origin: airport })
+    .populate("outgoing_flights")
+    .then(flight => flight.outgoing_flights);
+};
+
 module.exports = mongoose.model("flight", FlightSchema);
