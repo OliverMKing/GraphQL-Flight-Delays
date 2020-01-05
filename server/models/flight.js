@@ -65,4 +65,10 @@ FlightSchema.statics.findIncoming = function(id) {
   );
 };
 
+// Finds flights by Airline id
+FlightSchema.statics.findFlights = function(id) {
+  const airline = Airline.findById(id);
+  return Promise.all([airline]).then(([airline]) => this.find({ airline }));
+};
+
 module.exports = mongoose.model("flight", FlightSchema);
