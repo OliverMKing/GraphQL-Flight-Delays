@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
-import query from "../queries/AirlineQuery";
+import query from "../queries/AirportQuery";
 import { Link } from "react-router";
 
-class Airline extends Component {
+class Airport extends Component {
   render() {
     if (this.props.data.loading) {
       return <div></div>;
     }
 
-    const airline = this.props.data.airline;
+    const airport = this.props.data.airport;
     const average = array => array.reduce((a, b) => a + b, 0) / array.length;
     const avgLiftoffDelay = average(
-      airline.flights.map(flight => flight.destination_delay)
+      airport.outgoing_flights.map(flight => flight.destination_delay)
     ).toFixed(3);
     const avgLandingDelay = average(
-      airline.flights.map(flight => flight.arrival_delay)
+      airport.incoming_flights.map(flight => flight.arrival_delay)
     ).toFixed(3);
 
     return (
@@ -23,9 +23,11 @@ class Airline extends Component {
         <Link to="/select">Back</Link>
         <h3>{this.props.params.name}</h3>
         <h5>IATA Code</h5>
-        {airline.code}
-        <h5>Number of delays</h5>
-        {airline.flights.length}
+        {airport.code}
+        <h5>Number of incoming delays</h5>
+        {airport.incoming_flights.length}
+        <h5>Number of outgoing delays</h5>
+        {airport.outgoing_flights.length}
         <h5>Average liftoff delay (when there is a delay)</h5>
         {isNaN(avgLiftoffDelay) ? "0 minutes" : avgLiftoffDelay + " minutes"}
         <h5>Average landing delay (when there is a delay)</h5>
@@ -39,4 +41,4 @@ export default graphql(query, {
   options: props => {
     return { variables: { name: props.params.name } };
   }
-})(Airline);
+})(Airport);

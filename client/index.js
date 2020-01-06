@@ -7,6 +7,7 @@ import App from "./components/App";
 import Home from "./components/Home";
 import SelectForm from "./components/Select";
 import Airline from "./components/Airline";
+import Airport from "./components/Airport";
 
 // Specifies that cookies should be sent
 const networkInterface = createNetworkInterface({
@@ -29,6 +30,7 @@ const Root = () => {
         <Route path="/" component={App}>
           <Route path="/select" component={SelectForm} />
           <Route path="/airline/:name" component={Airline} />
+          <Route path="/airport/:name" component={Airport} />
         </Route>
       </Router>
     </ApolloProvider>

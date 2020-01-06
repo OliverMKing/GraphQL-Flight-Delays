@@ -16,7 +16,7 @@ export default () => {
           </div>
           <div className="row center">
             <Link to="/select" className="brand-logo">
-              <a className="btn-large">Let's Research</a>
+              <div className="btn-large">Let's Research</div>
             </Link>
           </div>
         </div>

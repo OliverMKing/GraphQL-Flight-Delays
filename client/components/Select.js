@@ -7,7 +7,7 @@ class SelectForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { airline: "AirTran Airways", airport: "" };
+    this.state = { airline: "AirTran Airways", airport: "Adams Fld" };
   }
 
   handleAirlineChange(event) {
