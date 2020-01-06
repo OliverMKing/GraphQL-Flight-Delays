@@ -11,12 +11,13 @@ class Airline extends Component {
 
     const airline = this.props.data.airline;
     const average = array => array.reduce((a, b) => a + b) / array.length;
-    const avgLiftoffDelay = average(
-      airline.flights.map(flight => flight.destination_delay)
-    ).toFixed(3);
-    const avgLandingDelay = average(
-      airline.flights.map(flight => flight.arrival_delay)
-    ).toFixed(3);
+    const avgLiftoffDelay =
+      average(airline.flights.map(flight => flight.destination_delay)).toFixed(
+        3
+      ) + " minutes";
+    const avgLandingDelay =
+      average(airline.flights.map(flight => flight.arrival_delay)).toFixed(3) +
+      " minutes";
 
     return (
       <div className="row">
