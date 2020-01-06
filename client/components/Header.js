@@ -6,7 +6,7 @@ const Header = props => {
     <nav>
       <div className="nav-wrapper">
         <Link to="/" className="brand-logo">
-          Flight Delay Researcher
+          Flight Delay
         </Link>
       </div>
     </nav>

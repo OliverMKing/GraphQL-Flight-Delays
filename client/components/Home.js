@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import { Link } from "react-router";
 
 export default () => {
   return (
@@ -14,13 +15,9 @@ export default () => {
             </h5>
           </div>
           <div className="row center">
-            <a
-              href="http://materializecss.com/getting-started.html"
-              id="download-button"
-              className="btn-large"
-            >
-              Let's Research
-            </a>
+            <Link to="/select" className="brand-logo">
+              <a className="btn-large">Let's Research</a>
+            </Link>
           </div>
         </div>
       </div>

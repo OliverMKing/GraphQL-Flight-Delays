@@ -5,6 +5,7 @@ import { ApolloProvider } from "react-apollo";
 import { Router, hashHistory, Route, IndexRoute } from "react-router";
 import App from "./components/App";
 import Home from "./components/Home";
+import SelectForm from "./components/Select";
 
 // Specifies that cookies should be sent
 const networkInterface = createNetworkInterface({
@@ -24,7 +25,9 @@ const Root = () => {
     <ApolloProvider client={client}>
       <Router history={hashHistory}>
         <Route path="/" component={Home} />
-        <Route path="/" component={App}></Route>
+        <Route path="/" component={App}>
+          <Route path="/select" component={SelectForm} />
+        </Route>
       </Router>
     </ApolloProvider>
   );
